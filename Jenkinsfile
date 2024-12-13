@@ -4,6 +4,8 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'thahphuog/server_golang'
         DOCKER_TAG = 'latest'
+        TELEGRAM_BOT_TOKEN = '7908085505:AAEy0dz1yrVesOaFmZ1s5qWlvslKWekBi_k'
+        TELEGRAM_CHAT_ID = '-1002403309943'
     }
 
     stages {
@@ -63,5 +65,21 @@ pipeline {
         always {
             cleanWs()
         }
+
+        success {
+            sendTelegramMessage("✅ Build #${BUILD_NUMBER} was successful! ✅")
+        }
+
+        failure {
+            sendTelegramMessage("❌ Build #${BUILD_NUMBER} failed. ❌")
+        }
     }
+}
+
+def sendTelegramMessage(String message) {
+    sh """
+    curl -s -X POST https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage \
+    -d chat_id=${TELEGRAM_CHAT_ID} \
+    -d text="${message}"
+    """
 }
