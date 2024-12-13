@@ -13,5 +13,18 @@ func main() {
 			"message": "pong",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+
+	r.GET("/api/list-product", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "List Product",
+		})
+	})
+
+	r.GET("/api/list-user", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "List User",
+		})
+	})
+
+	r.Run(":3000")
 }
