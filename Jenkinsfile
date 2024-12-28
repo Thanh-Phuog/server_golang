@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'thahphuog/servergolang'
-        DOCKER_TAG = '1.0.0'
+        DOCKER_TAG = '1.0.'
         TELEGRAM_BOT_TOKEN = '7908085505:AAEy0dz1yrVesOaFmZ1s5qWlvslKWekBi_k'
         TELEGRAM_CHAT_ID = '-1002403309943'
     }
